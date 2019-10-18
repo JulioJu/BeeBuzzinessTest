@@ -1,0 +1,40 @@
+{
+    "compilerOptions": {
+        // couldn't be es6: https://medium.com/the-node-js-collection/an-update-on-es6-modules-in-node-js-42c958b890c
+        // Transpiler transpile from es6 to commonJS.
+        "module": "commonJS",
+        "target": "es2017",
+        "pretty": true,
+        "sourceMap": false,
+        "inlineSourceMap": false,
+        "outDir": "./appJS",
+        "watch": false,
+        "preserveWatchOutput": true,
+        "baseUrl": ".", // This must be specified if "paths" is.
+        "paths": {
+          "@data/*": ["./app/data/*"],
+          "@OAuth/*": ["./app/OAuth/*"],
+          "@User/*": ["./app/User/*"]
+        },
+        "lib": ["DOM","ES6","DOM.Iterable","ScriptHost","ES2017","ES2018"],
+        "alwaysStrict": true,
+        "forceConsistentCasingInFileNames": true,
+        "noImplicitAny": true,
+        "noImplicitThis": true,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true, // express neads"app.get("/", (req, res) => {" even if req or res is not used
+        "strictNullChecks": true,
+        "strictFunctionTypes": true
+    },
+    "include": [
+        "app/*.ts",
+        "app/**/*.ts",
+        "app/*.ts"
+    ],
+    "exclude" : [
+        "./appJS",
+        "./node_modules"
+    ]
+}

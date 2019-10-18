@@ -1,0 +1,240 @@
+---
+# rulesDirectory:
+# - node_modules/codelyzer
+extends:
+  # See https://github.com/palantir/tslint/tree/master/src/configs
+  - "tslint:all"
+  # - "tslint-sonarts"
+rules:
+  # TSLINT
+  # https://palantir.github.io/tslint/rules/
+  # https://github.com/palantir/tslint/tree/master/test/rules
+
+  # =========================
+  # |    TypeScript-specific
+  # |    These rules find errors related to TypeScript features:
+  # =========================
+
+  # ban-ts-ignore: false
+
+  # # Traditional functions don’t bind lexical scope, which can lead to unexpected
+  # # behavior when accessing ‘this’.
+  # only-arrow-functions: false
+
+  # Enforces member ordering. (public, private, fields, etc.)
+  member-ordering: false
+
+  # See https://github.com/palantir/tslint/issues/711 named
+  #     "'no-inferrable-types' and 'typedef' rules conflict"
+  no-inferrable-types:
+    - false
+    # allows specifying an inferrable type annotation for function params. This
+    # can be useful when combining with the typedef rule.
+    # - ignore-params
+    # allows specifying an inferrable type annotation for class properties.
+    # ignore-properties
+
+  # =========================
+  # |   Functionality
+  # |   These rules catch common errors in JS programming or otherwise confusing
+  # |   constructs that are prone to producing bugs:
+  # =========================
+
+  # use this rule sparingly. It’s better to have self-documenting names on
+  # components with single, consice responsibilities. Comments that only restate
+  # the names of variables add nothing to code, and can easily become outdated.
+  comment-format: false
+
+  no-console:
+    - false
+
+  # Disallows unused imports, variables, functions and private class members.
+  # Similar to tsc’s –noUnusedParameters and –noUnusedLocals options.
+  # no-unused-variable is deprecated. Since TypeScript 2.9. Please use the
+  # built-in compiler checks instead.
+  # https://github.com/palantir/tslint/issues/4046
+  # https://github.com/palantir/tslint/pull/3919
+  no-unused-variable: false
+
+  # no-submodule-imports: false
+
+  no-void-expression:
+    - true
+    # If ignore-arrow-function-shorthand is provided, () => returnsVoid() will
+    # be allowed. Otherwise, it must be written as () => { returnsVoid(); }.
+    - ignore-arrow-function-shorthand
+
+  # When adding two variables, operands must both be of type number or of type
+  # string.
+  # (NOTE by me: bad idea to restrict-plus-operand: if we accenditally
+  #     add an object and a string, we will have a weird thing.
+  # But not cool other solutions if we want concatenation
+  # between number and strings without use template litteral
+  # (template litteral on several lines cause lot of problems
+  #   http://2ality.com/2016/05/template-literal-whitespace.html)
+  # restrict-plus-operands: false
+
+  # Restricts the types allowed in boolean expressions.
+  # See complet doc at
+  #   https://palantir.github.io/tslint/rules/strict-boolean-expressions/
+  # False, because even if with all options
+  #     `if (obj: Object | null)`  is false. In the JavaScript compiled
+  #     , if `obj` is undefined, it's a problem!
+  strict-boolean-expressions: false
+    # - true
+    # - allow-null-union
+    # - allow-string
+    # - allow-number
+    # - allow-mix
+    #   # Allows union types containing undefined.
+    #   # It does not allow undefined itself.
+    #   # Without the ‘–strictNullChecks’ compiler option, this will allow
+    #   # anything other than a string, number, or enum.
+    # - allow-undefined-union
+    #   # Allows boolean | undefined.
+    #   # Also allows true | false | undefined.
+    #   # Does not allow false | undefined.
+    #   # This option is a subset of allow-undefined-union, so you don’t need to
+    #   # enable both options at the same time.
+    # - allow-boolean-or-undefined
+
+  # =========================
+  # |   Maintainability
+  # |   These rules make code maintenance easier:
+  # =========================
+  indent:
+    - true
+    - spaces
+  max-line-length:
+    - true
+    - limit: 80
+      # Chararcter '*' or '\*' doesn't work
+      ignore-pattern: '^\s*// http://|^\s*// https://|^\s*// See http://|^\s*// See https://'
+  trailing-comma:
+    - true
+    - multiline:
+        objects: never
+        arrays: never
+        functions: never
+        typeLiterals: never
+      esSpecCompliant: true
+
+  typedef:
+    - true
+    - call-signature # checks return type of functions.
+    - arrow-call-signature #  checks return type of arrow functions.
+    - parameter #  checks type specifier of function parameters for non-arrow functions
+    - arrow-parameter # checks type specifier of function parameters for arrow functions.
+    - property-declaratio # checks return types of interface propertiesn
+    # - variable-declaration # checks non-binding variable declarations
+    - member-variable-declaration
+    - object-destructuring
+    - array-destructuring
+
+  # =========================
+  # |   Style
+  # |   These rules enforce consistent style across your codebase:
+  # =========================
+
+  # Enforces vertical alignment.
+  # align:
+  #   - true
+  #   # - parameters
+  #   # - arguments
+  #   - statements
+  #   - members
+  #   - elements
+
+  # TODO: should be true
+  completed-docs: false
+
+  # Ensures proper spacing between import statement keywords
+  import-spacing: false
+
+  # Enforces using explicit += 1 or -= 1 operators.
+  increment-decrement: false
+
+  file-name-casing:
+    - true
+    - kebab-case
+    - camel-case
+
+  newline-before-return: false
+
+  # Disallows parameter properties in class constructors. (private myvar)
+  no-parameter-properties: false
+
+  object-literal-sort-keys: false
+  ordered-imports: false
+
+  # Prefer a template expression over string literal concatenation.
+  prefer-template: false
+
+  quotemark:
+    - true
+    - single
+  space-before-function-paren: false # not my style (myFunc())
+
+  variable-name:
+    - true
+    - ban-keyword
+    - allow-leading-underscore
+    - allow-pascal-case
+
+  # =========================
+  # |   Sonar TS
+  # |   Static code analyzer for TypeScript detecting bugs and suspicious patterns in your code.
+  # |   https://github.com/SonarSource/SonarTS
+  # =========================
+
+  # no-commented-code: false
+
+  # # =========
+  # # |  COEDLYSER
+  # # =========
+  # # In angular-cli 1.7.2
+  # directive-selector:
+  #   - true
+  #   - attribute
+  #   - app
+  #   - camelCase
+  # component-selector:
+  #   - true
+  #   - element
+  #   - app
+  #   - kebab-case
+  # no-output-on-prefix: true
+  # use-input-property-decorator: true
+  # use-output-property-decorator: true
+  # use-host-property-decorator: true
+  # no-input-rename: true
+  # no-output-rename: true
+  # use-life-cycle-interface: true
+  # use-pipe-transform-interface: true
+  # component-class-suffix: true
+  # directive-class-suffix: true
+  # # # In JHipster 4.6.1
+  # # # Doesn't work
+  # # no-access-missing-member: true
+  # # templates-use-public: true
+  # # invoke-injectable: true
+
+
+
+  # =========================
+  # |   Needed for this Mongo project
+  # |   But not very cool as it.
+  # =========================
+
+  # In this project, `// tslint:disable:no-unsafe-any' in
+  # app/utils/route-main.ts
+  # app/entities/abstract/abstract.route.ts
+  # app/ObserverTests.ts
+  # no-unsafe-any: false
+
+  # My code is not well aligned :'(
+  # Can't be well fixed thanks option `--fix`
+  align: false
+
+  # Could be cool, but I've used too much magic-numbers
+  no-magic-numbers: false
