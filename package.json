@@ -5,7 +5,7 @@
   "author": "https://github.com/JulioJu",
   "license": "ISC",
   "scripts": {
-    "start": "firefox ./app/index.html",
+    "start": "node ./appJS/src/index.js",
     "compile": "rm -Rf ./app/javascript && node ./node_modules/.bin/tsc",
     "lint": "node ./node_modules/tslint/bin/tslint --project ./tsconfig.json --config \"./tslint.yaml\" \"app/**/*.ts\" --format verbose",
     "test": "jest ./appJS/test",
@@ -15,12 +15,24 @@
     "watch": "npm-run-all --parallel watch:compile watch:lint",
     "watch:all": "npm-run-all --parallel watch:compile watch:lint && watch:lint"
   },
+  "engines": {
+    "node": ">=9.5.0"
+  },
   "devDependencies": {
     "@types/jest": "^24.0.19",
+    "@types/node": "^12.11.1",
+    "@types/semver": "^6.0.2",
     "chokidar-cli": "^2.0.0",
     "jest": "^24.9.0",
     "npm-run-all": "^4.1.5",
     "tslint": "^5.20.0",
     "typescript": "^3.6.4"
+  },
+  "dependencies": {
+    "console-error": "^0.0.4",
+    "console-info": "^0.0.5",
+    "console-warn": "^0.0.4",
+    "node": "^12.12.0",
+    "semver": "^6.3.0"
   }
 }
