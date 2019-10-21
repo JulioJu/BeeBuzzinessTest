@@ -3,7 +3,7 @@
   *         GITHUB: https://github.com/JulioJu
   *        LICENSE: MIT (https://opensource.org/licenses/MIT)
   *        CREATED: Mon 21 Oct 2019 04:34:18 PM CEST
-  *       MODIFIED:
+  *       MODIFIED: Mon 21 Oct 2019 10:24:20 PM CEST
   *
   *          USAGE:
   *
@@ -12,12 +12,19 @@
   */
 
 import * as semver from 'semver';
+import { Build2DArray, BuildString } from './display-lcd';
+// Can't use `import` like es6
+// tslint:disable:no-var-requires no-require-imports
+require('console-info');
+require('console-warn');
+require('console-error');
+require('../../console-debug');
 
 /**
  * Instantiate node.js
  *
  */
-export const instantiateServer = (): void => {
+export const InstantiateServer = (): void => {
 
   console.debug(`This process is pid ${process.pid}`);
 
@@ -47,12 +54,11 @@ export const instantiateServer = (): void => {
  * Parse command line
  *
  */
-export const parseCommandLine = (): void => {
+export const ParseCommandLine = (): void => {
   const usage: string =
     'You must use at least one argument composed only of digits: '
     + 'e.g. `./yarn start 798778`';
   const numberOfArgs = process.argv.length;
-  console.debug(numberOfArgs);
   if (numberOfArgs === 2) {
     console.info(usage);
   } else if (numberOfArgs > 3) {
@@ -74,6 +80,11 @@ export const parseCommandLine = (): void => {
         console.error(usage);
         process.exit(4);
       }
+
     }
+    // FOLLOWING: IF ARGUMENTS ARE CORRECTS
+    console.log(BuildString(Build2DArray(digitArgumentsArray)));
   }
 };
+
+// vim: sw=2 ts=2 et:

@@ -12,15 +12,12 @@ tiret bas, ou un pipe.
 Par exemple (ici en utilisant un point à la place d’espace)
 
 ._.   ...   ._.   ._.   ...   ._.   ._.   ._.   ._.   ._.
-
 |.|   ..|   ._|   ._|   |_|   |_.   |_.   ..|   |_|   |_|
-
 |_|   ..|   |_.   ._|   ..|   ._|   |_|   ..|   |_|   ..|
 
+Exemple: 910
 ._. ... ._.
-
 |_| ..| |.|
-
 ..| ..| |_|
 
 Un programme en ligne de commandes permettra d’exécuter le résultat de ton travail.
@@ -84,6 +81,31 @@ yarn start 143a
         ```
         3. The tool crashes with sonar.js
         4. Warnings about not rules not still implemented on ESLint
+
+
+# Notes about mocha and jest
+
+* With Mocha and Jest can't pass command line argument in the app tested.
+    `./yarn test 1234` doesn't work.
+
+* With Mocha, the error is
+    ```
+
+ ✘   At index '0' of the string './appJS/test', the character '.' is not a number (`NaN`)
+ ✘   You must use at least one argument composed only of digits: e.g. `./yarn start 798778`
+ ✘
+
+
+Finishing with error code '4'…
+    ```
+
+There are some solutions https://stackoverflow.com/questions/16144455/mocha-tests-with-extra-options-or-parameters/16150402
+https://medium.com/@nickcis/jest-passing-custom-arguments-d44ef3f2defb
+(I've found other resources, but less useful).
+
+But I prefer pass arguments.
+
+* I don't know if we could mock `./app/src/start-node-parse-command-line.ts.ParseCommandLine();`
 
 <!-- vim: sw=2 ts=2 et:
 -->
