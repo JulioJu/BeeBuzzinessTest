@@ -45,7 +45,12 @@ Un programme en ligne de commandes permettra d’exécuter le résultat de ton t
     yarn lint
     ```
 
-## Tests
+* To test use:
+    ```sh
+    yarn test
+    ```
+
+## Usage
 
 1.
     ```sh
@@ -73,7 +78,7 @@ Un programme en ligne de commandes permettra d’exécuter le résultat de ton t
 
 * TSLint is deprecated for a few months. Use ESLint.
     * I've tested quickly https://github.com/typescript-eslint/tslint-to-eslint-config
-        but I'm not convinced.
+        but I'm not convinced because:
         1. Generate too much rules,
         2. Don't use
         ```json
@@ -82,7 +87,9 @@ Un programme en ligne de commandes permettra d’exécuter le résultat de ton t
         ]
         ```
         3. The tool crashes with sonar.js
-        4. Warnings about not rules not still implemented on ESLint
+          (maybe it's caused because I've forgotten to add it in package.json)
+        4. Warnings about rules not still implemented on ESLint
+        5. Skip all comments
 
 
 # Notes for me about mocha and jest
@@ -121,11 +128,14 @@ https://medium.com/@nickcis/jest-passing-custom-arguments-d44ef3f2defb
 * Done alone until (include)
     https://github.com/JulioJu/BeeBuzzinessTest/tree/912a0aa85c2fa806643919389ca89378c5449e49
 
-* After this commit, done with lot of helps of a friend (Rémi), especially about:
-    * test behaviour (sinon package, tip about `require.main === module`)
+* After this commit, done thanks lot of helps of a friend (Rémi),
+    especially about:
+    * test behaviour (sinon package, tip about `require.main === module`,
+        don't display log into test stage, etc.)
     * improve my doc and comments (it was broken)
     * readability of the code (split code into functions,
         name variables and functions, etc.)
+    * …
 
 <!-- vim: sw=2 ts=2 et:
 -->
