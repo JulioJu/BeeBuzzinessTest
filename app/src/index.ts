@@ -3,7 +3,7 @@
   *         GITHUB: https://github.com/JulioJu
   *        LICENSE: MIT (https://opensource.org/licenses/MIT)
   *        CREATED: Fri 18 Oct 2019 06:26:42 PM CEST
-  *       MODIFIED: Tue 22 Oct 2019 11:07:48 AM CEST
+  *       MODIFIED: Tue 22 Oct 2019 11:42:19 AM CEST
   *
   *          USAGE:
   *
@@ -12,19 +12,19 @@
   */
 
 import {
-  InstantiateServer,
+  SetupProcess,
   ParseCommandLine
-} from './start-node-parse-command-line';
+} from './setup-server-parse-commandline';
 import * as Logger from '../logger';
 
-export const Main = (): boolean => {
-  InstantiateServer();
-  if (process.env.ldAppBeeBuzziness !== 'true') {
-    ParseCommandLine();
+export const Main = (): void => {
+  let exitCode: number = SetupProcess();
+  if (process.env.ldAppBeeBuzziness !== 'true' && exitCode === 0) {
+    exitCode = ParseCommandLine();
   } else {
     Logger.warn('Test environnement. No command line are passed.');
   }
-  return true;
+  process.exit(exitCode);
 };
 
 Main();
