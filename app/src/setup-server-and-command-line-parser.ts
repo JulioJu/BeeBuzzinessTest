@@ -3,7 +3,7 @@
   *         GITHUB: https://github.com/JulioJu
   *        LICENSE: MIT (https://opensource.org/licenses/MIT)
   *        CREATED: Mon 21 Oct 2019 04:34:18 PM CEST
-  *       MODIFIED: Tue 22 Oct 2019 11:50:10 AM CEST
+  *       MODIFIED: Tue 22 Oct 2019 01:24:12 PM CEST
   *
   *          USAGE:
   *
@@ -14,6 +14,15 @@
 import * as semver from 'semver';
 import { buildStringOfLCDChars } from './lcd-display';
 import * as Logger from '../logger';
+
+const _printUsage = (isError: boolean): void => {
+  const usage: string =
+    'You must use at least one argument composed only of digits: '
+    + 'e.g. `./yarn start 798778`';
+  isError
+  ? Logger.error(usage)
+  : Logger.info(usage);
+};
 
 /**
  * Instantiate node.js
@@ -44,36 +53,29 @@ export const setupProcess = (): number => {
  * Parse command line
  *
  */
-export const parseCommandLine = (): number => {
-  const usage: string =
-    'You must use at least one argument composed only of digits: '
-    + 'e.g. `./yarn start 798778`';
-  const numberOfArgs = process.argv.length;
-  if (numberOfArgs === 2) {
-    Logger.info(usage);
-  } else if (numberOfArgs > 3) {
-    Logger.error(usage);
+export const parseCommandLine = (args: string[]): number => {
+  if (args.length === 2) {
+    _printUsage(false);
+    return 2;
+    // tslint:disable-next-line unnecessary-else
+  } else if (args.length > 3) {
+    _printUsage(true);
     return 3;
-  } else {
-    const digitsArgumentString: string = process.argv[2];
-    Logger.info(`You have passed argument ${digitsArgumentString}.`);
-    const digitArgumentsArray: number[] =
-      new Array(digitsArgumentString.length);
-    for (let index = 0 ; index < digitArgumentsArray.length ; index ++) {
-      const oneDigit: string = digitsArgumentString.charAt(index);
-      digitArgumentsArray[index] =
-        Number.parseInt(oneDigit, 10);
-      if (Number.isNaN(digitArgumentsArray[index])) {
-        Logger.error(`At index '${index}' of the string `
-          + `'${digitsArgumentString}', the character '${oneDigit}' `
-          + `is not a number (\`NaN\`)`);
-        Logger.error(usage);
-        return 4;
-      }
-
-    }
-    Logger.displayLCD(buildStringOfLCDChars(digitArgumentsArray));
   }
+  const digitArgs: string = args[2];
+  Logger.info(`You have passed argument '${digitArgs}'.`);
+  const numbers: number[] = new Array(digitArgs.length);
+  for (let index = 0 ; index < digitArgs.length ; index ++) {
+    const parsed: number = Number.parseInt(digitArgs.charAt(index), 10);
+    if (Number.isNaN(parsed)) {
+      Logger.error(`At index '${index}' of the string '${digitArgs}',`
+        + ` the character '${parsed}' is not a number (\`NaN\`)`);
+      _printUsage(true);
+      return 4;
+    }
+    numbers.push(parsed);
+  }
+  Logger.displayLCD(buildStringOfLCDChars(numbers));
   return 0;
 };
 

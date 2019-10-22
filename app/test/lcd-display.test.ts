@@ -3,7 +3,7 @@
   *         GITHUB: https://github.com/JulioJu
   *        LICENSE: MIT (https://opensource.org/licenses/MIT)
   *        CREATED: Mon 21 Oct 2019 04:47:18 PM CEST
-  *       MODIFIED: Tue 22 Oct 2019 11:51:10 AM CEST
+  *       MODIFIED: Tue 22 Oct 2019 01:14:26 PM CEST
   *
   *          USAGE:
   *
@@ -15,7 +15,7 @@ import { buildStringOfLCDChars } from '../src/lcd-display';
 
 describe('lcd-display tests', () => {
 
-  test('Should return the LCD string for \'0123456789\' (improved version)',
+  test('Should return the LCD string for \'0123456789\'',
     () => {
       const expectedLCDDisplay: string =
           '  _       _   _       _   _   _   _   _ \n'
