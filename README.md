@@ -118,5 +118,14 @@ https://medium.com/@nickcis/jest-passing-custom-arguments-d44ef3f2defb
     2. https://www.npmjs.com/package/console-error
     (license MIT)
 
+* Done alone until (include)
+    https://github.com/JulioJu/BeeBuzzinessTest/tree/912a0aa85c2fa806643919389ca89378c5449e49
+
+* After this commit, done with lot of helps of a friend (Rémi), especially about:
+    * test behaviour (sinon package, tip about `require.main === module`)
+    * improve my doc and comments (it was broken)
+    * readability of the code (split code into functions,
+        name variables and functions, etc.)
+
 <!-- vim: sw=2 ts=2 et:
 -->
