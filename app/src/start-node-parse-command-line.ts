@@ -3,7 +3,7 @@
   *         GITHUB: https://github.com/JulioJu
   *        LICENSE: MIT (https://opensource.org/licenses/MIT)
   *        CREATED: Mon 21 Oct 2019 04:34:18 PM CEST
-  *       MODIFIED: Mon 21 Oct 2019 10:24:20 PM CEST
+  *       MODIFIED: Tue 22 Oct 2019 09:42:37 AM CEST
   *
   *          USAGE:
   *
@@ -12,7 +12,7 @@
   */
 
 import * as semver from 'semver';
-import { Build2DArray, BuildString } from './display-lcd';
+import { BuildStringOfLCDChars } from './display-lcd';
 // Can't use `import` like es6
 // tslint:disable:no-var-requires no-require-imports
 require('console-info');
@@ -82,8 +82,7 @@ export const ParseCommandLine = (): void => {
       }
 
     }
-    // FOLLOWING: IF ARGUMENTS ARE CORRECTS
-    console.log(BuildString(Build2DArray(digitArgumentsArray)));
+    console.log(BuildStringOfLCDChars(digitArgumentsArray));
   }
 };
 

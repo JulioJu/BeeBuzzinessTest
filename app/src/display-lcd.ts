@@ -3,7 +3,7 @@
   *         GITHUB: https://github.com/JulioJu
   *        LICENSE: MIT (https://opensource.org/licenses/MIT)
   *        CREATED: Mon 21 Oct 2019 04:39:27 PM CEST
-  *       MODIFIED: Mon 21 Oct 2019 10:40:40 PM CEST
+  *       MODIFIED: Tue 22 Oct 2019 09:42:38 AM CEST
   *
   *          USAGE:
   *
@@ -11,113 +11,92 @@
   * ============================================================================
   */
 
-/**
- * Display one digit in the LCD screen
- * @param oneDigit one digit to display in LCD screen
- *
- */
-const _displayOneDigit = (oneDigit: number): string[] => {
+const _appendCharsToFirstLine = (oneDigit: number): string => {
   switch (oneDigit) {
     case 0:
-      return [
-        ' _ ',
-        '| |',
-        '|_|'
-      ];
+      return ' _ ';
     case 1:
-      return [
-        '  |',
-        '  |',
-        '  |'
-      ];
+      return '   ';
     case 2:
-      return [
-        ' _ ',
-        ' _|',
-        '|_ '
-      ];
+      return ' _ ';
     case 3:
-      return [
-        ' _ ',
-        ' _|',
-        ' _|'
-      ];
+      return ' _ ';
     case 4:
-      return [
-        '   ',
-        '|_|',
-        '  |'
-      ];
+      return '   ';
     case 5:
-      return [
-        ' _ ',
-        '|_ ',
-        ' _|'
-      ];
+      return ' _ ';
     case 6:
-      return [
-        ' _ ',
-        '|_ ',
-        '|_|'
-      ];
+      return ' _ ';
     case 7:
-      return [
-        ' _ ',
-        '  |',
-        '  |'
-      ];
+      return ' _ ';
     case 8:
-      return [
-        ' _ ',
-        '|_|',
-        '|_|'
-      ];
+      return ' _ ';
     default:
-      return [
-        ' _ ',
-        '|_|',
-        ' _|'
-      ];
+      return ' _ ';
   }
 };
 
-/**
- * Build 2D array
- * @param digitArray array of numbers to display in LCD screen
- *
- */
-export const Build2DArray = (digitArray: number[]): string[][] => {
-  const return2DArray: string[][] = new Array(digitArray.length);
-  for (let onceNumberLCDIndex = 0 ;
-    onceNumberLCDIndex < digitArray.length ;
-    onceNumberLCDIndex++
-  ) {
-    return2DArray[onceNumberLCDIndex] = new Array(3);
-    return2DArray[onceNumberLCDIndex] =
-      _displayOneDigit(digitArray[onceNumberLCDIndex]);
+const _appendCharsToSecondLine = (oneDigit: number): string => {
+  switch (oneDigit) {
+    case 0:
+      return '| |';
+    case 1:
+      return '  |';
+    case 2:
+      return ' _|';
+    case 3:
+      return ' _|';
+    case 4:
+      return '|_|';
+    case 5:
+      return '|_ ';
+    case 6:
+      return '|_ ';
+    case 7:
+      return '  |';
+    case 8:
+      return '|_|';
+    default:
+      return '|_|';
   }
-  return return2DArray;
 };
 
-export const BuildString = (return2DArray: string[][]): string => {
-  const stringLine: string[] = new Array(3);
-  let stringWithAllNumbers: string = '';
-  for (let line = 0 ; line < 3 ; line++) {
-    stringLine[line] = '';
-    // tslint:disable-next-line prefer-for-of
-    for (let onceNumberLCDIndex = 0 ;
-      onceNumberLCDIndex < return2DArray.length ;
-      onceNumberLCDIndex++
-    ) {
-      stringLine[line] =
-        `${stringLine[line]} ${return2DArray[onceNumberLCDIndex][line]}`;
-    }
-    line === 0
-      ? stringWithAllNumbers = `${stringLine[line]}\n`
-      : stringWithAllNumbers = `${stringWithAllNumbers}${stringLine[line]}\n`;
+const _appendCharsToThirdLine = (oneDigit: number): string => {
+  switch (oneDigit) {
+    case 0:
+      return '|_|';
+    case 1:
+      return '  |';
+    case 2:
+      return '|_ ';
+    case 3:
+      return ' _|';
+    case 4:
+      return '  |';
+    case 5:
+      return ' _|';
+    case 6:
+      return '|_|';
+    case 7:
+      return '  |';
+    case 8:
+      return '|_|';
+    default:
+      return ' _|';
   }
-  return stringWithAllNumbers;
+};
 
+export const BuildStringOfLCDChars = (digits: number[]): string => {
+  let firstLineToPrint = '';
+  let secondLineToPrint = '';
+  let thirdLineToPrint = '';
+  for (const digit of digits) {
+    firstLineToPrint = `${firstLineToPrint} ${_appendCharsToFirstLine(digit)}`;
+    secondLineToPrint =
+      `${secondLineToPrint} ${_appendCharsToSecondLine(digit)}`;
+    thirdLineToPrint = `${thirdLineToPrint} ${_appendCharsToThirdLine(digit)}`;
+  }
+  return `${firstLineToPrint}\n${secondLineToPrint}\n${thirdLineToPrint}`;
 };
 
 // vim: sw=2 ts=2 et:

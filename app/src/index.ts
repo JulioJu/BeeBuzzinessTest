@@ -3,7 +3,7 @@
   *         GITHUB: https://github.com/JulioJu
   *        LICENSE: MIT (https://opensource.org/licenses/MIT)
   *        CREATED: Fri 18 Oct 2019 06:26:42 PM CEST
-  *       MODIFIED: Mon 21 Oct 2019 08:12:29 PM CEST
+  *       MODIFIED: Tue 22 Oct 2019 09:45:55 AM CEST
   *
   *          USAGE:
   *
@@ -25,8 +25,9 @@ require('../../console-debug');
 export const Main = (): boolean => {
   InstantiateServer();
   if (process.env.ldAppBeeBuzziness !== 'true') {
-    console.warn('Test environnement. No command line are passed.');
     ParseCommandLine();
+  } else {
+    console.warn('Test environnement. No command line are passed.');
   }
   return true;
 };
