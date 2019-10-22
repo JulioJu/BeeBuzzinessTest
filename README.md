@@ -85,7 +85,7 @@ Un programme en ligne de commandes permettra d’exécuter le résultat de ton t
         4. Warnings about not rules not still implemented on ESLint
 
 
-# Notes about mocha and jest
+# Notes for me about mocha and jest
 
 * With Mocha and Jest can't pass command line argument in the app tested.
     `./yarn test 1234` doesn't work.
@@ -100,8 +100,13 @@ Un programme en ligne de commandes permettra d’exécuter le résultat de ton t
 There are some solutions https://stackoverflow.com/questions/16144455/mocha-tests-with-extra-options-or-parameters/16150402
 https://medium.com/@nickcis/jest-passing-custom-arguments-d44ef3f2defb
 
-* I don't know if we could mock
-    `./app/src/setup-server-and-command-line-parser.ts.parseCommandLine();`
+* *The solution is*
+
+    ```javascript
+    if (require.main === module) {
+      process.exit(exitCode)
+    }
+    ```
 
 # Credits
 
