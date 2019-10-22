@@ -5,13 +5,13 @@
   "author": "https://github.com/JulioJu",
   "license": "ISC",
   "scripts": {
-    "start": "node ./appJS/src/index.js",
-    "compile": "rm -Rf ./app/javascript && node ./node_modules/.bin/tsc",
+    "start": "node ./build/src/index.js",
+    "compile": "rm -Rf ./build/ && node ./node_modules/.bin/tsc",
     "lint": "node ./node_modules/tslint/bin/tslint --project ./tsconfig.json --config \"./tslint.yaml\" \"app/**/*.ts\" --format verbose",
-    "test": "export ldAppBeeBuzziness=true && jest ./appJS/test",
+    "test": "export ldAppBeeBuzziness=true && jest ./build/test",
     "watch:compile": "rm -Rf ./app/javascript && node ./node_modules/typescript/bin/tsc --watch",
     "watch:lint": "node ./node_modules/chokidar-cli/index.js 'app/**/*.ts' -c \"npm run lint\" --initial --verbose",
-    "watch:test": "jest --watchAll ./appJS/test",
+    "watch:test": "jest --watchAll ./build/test",
     "watch": "npm-run-all --parallel watch:compile watch:lint",
     "watch:all": "npm-run-all --parallel watch:compile watch:lint && watch:lint"
   },

@@ -7,7 +7,7 @@
         "pretty": true,
         "sourceMap": false,
         "inlineSourceMap": false,
-        "outDir": "./appJS",
+        "outDir": "./build",
         "watch": false,
         "preserveWatchOutput": true,
         "baseUrl": ".", // This must be specified if "paths" is.
@@ -34,7 +34,7 @@
         "app/*.ts"
     ],
     "exclude" : [
-        "./appJS",
+        "./build",
         "./node_modules"
     ]
 }
