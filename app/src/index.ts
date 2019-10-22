@@ -14,7 +14,7 @@
 import {
   setupProcess,
   parseCommandLine
-} from './setup-server-parse-commandline';
+} from './setup-server-and-command-line-parser';
 import * as Logger from '../logger';
 
 export const main = (): void => {

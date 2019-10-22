@@ -100,6 +100,9 @@ Un programme en ligne de commandes permettra d’exécuter le résultat de ton t
 There are some solutions https://stackoverflow.com/questions/16144455/mocha-tests-with-extra-options-or-parameters/16150402
 https://medium.com/@nickcis/jest-passing-custom-arguments-d44ef3f2defb
 
+* I don't know if we could mock
+    `./app/src/setup-server-and-command-line-parser.ts.parseCommandLine();`
+
 # Credits
 
 * ./app/logger.ts is strongly inspired from

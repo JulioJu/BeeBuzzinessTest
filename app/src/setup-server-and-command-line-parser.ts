@@ -12,7 +12,7 @@
   */
 
 import * as semver from 'semver';
-import { buildStringOfLCDChars } from './display-lcd';
+import { buildStringOfLCDChars } from './lcd-display';
 import * as Logger from '../logger';
 
 /**

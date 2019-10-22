@@ -11,9 +11,9 @@
   * ============================================================================
   */
 
-import { buildStringOfLCDChars } from '../src/display-lcd';
+import { buildStringOfLCDChars } from '../src/lcd-display';
 
-describe('display-lcd tests', () => {
+describe('lcd-display tests', () => {
 
   test('Should return the LCD string for \'0123456789\' (improved version)',
     () => {
