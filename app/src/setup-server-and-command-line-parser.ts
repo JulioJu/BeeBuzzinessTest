@@ -3,7 +3,7 @@
   *         GITHUB: https://github.com/JulioJu
   *        LICENSE: MIT (https://opensource.org/licenses/MIT)
   *        CREATED: Mon 21 Oct 2019 04:34:18 PM CEST
-  *       MODIFIED: Tue 22 Oct 2019 01:24:12 PM CEST
+  *       MODIFIED: Tue 22 Oct 2019 03:17:16 PM CEST
   *
   *          USAGE:
   *
@@ -13,36 +13,36 @@
 
 import * as semver from 'semver';
 import { buildStringOfLCDChars } from './lcd-display';
-import * as Logger from '../logger';
+import { Logger } from '../logger';
 
-const _printUsage = (isError: boolean): void => {
+const _printUsage = (isError: boolean, logger: Logger): void => {
   const usage: string =
     'You must use at least one argument composed only of digits: '
     + 'e.g. `./yarn start 798778`';
   isError
-  ? Logger.error(usage)
-  : Logger.info(usage);
+  ? logger.error(usage)
+  : logger.info(usage);
 };
 
 /**
  * Instantiate node.js
  *
  */
-export const setupProcess = (): number => {
+export const setupProcess = (logger: Logger): number => {
 
   const nodeversion = process.versions.node;
-  Logger.info(`You use version ${nodeversion} of Node.js`);
+  logger.info(`You use version ${nodeversion} of Node.js`);
 
   process.on('exit', (code: number) => {
     if (code === 0) {
-      Logger.info('\n\n\n\nFinishing with code 0…');
+      logger.info('\n\n\n\nFinishing with code 0…');
     } else {
-      Logger.error(`\n\n\nFinishing with error code '${code}'…`);
+      logger.error(`\n\n\nFinishing with error code '${code}'…`);
     }
   });
 
   if (semver.lte(nodeversion, '9.5.0')) {
-    Logger.error('Please use a node >= 9.5.0');
+    logger.error('Please use a node >= 9.5.0');
     return 20;
   }
 
@@ -53,29 +53,29 @@ export const setupProcess = (): number => {
  * Parse command line
  *
  */
-export const parseCommandLine = (args: string[]): number => {
+export const parseCommandLine = (args: string[], logger: Logger): number => {
   if (args.length === 2) {
-    _printUsage(false);
+    _printUsage(false, logger);
     return 2;
     // tslint:disable-next-line unnecessary-else
   } else if (args.length > 3) {
-    _printUsage(true);
+    _printUsage(true, logger);
     return 3;
   }
   const digitArgs: string = args[2];
-  Logger.info(`You have passed argument '${digitArgs}'.`);
+  logger.info(`You have passed argument '${digitArgs}'.`);
   const numbers: number[] = new Array(digitArgs.length);
   for (let index = 0 ; index < digitArgs.length ; index ++) {
     const parsed: number = Number.parseInt(digitArgs.charAt(index), 10);
     if (Number.isNaN(parsed)) {
-      Logger.error(`At index '${index}' of the string '${digitArgs}',`
+      logger.error(`At index '${index}' of the string '${digitArgs}',`
         + ` the character '${parsed}' is not a number (\`NaN\`)`);
-      _printUsage(true);
+      _printUsage(true, logger);
       return 4;
     }
     numbers.push(parsed);
   }
-  Logger.displayLCD(buildStringOfLCDChars(numbers));
+  logger.displayLCD(buildStringOfLCDChars(numbers));
   return 0;
 };
 

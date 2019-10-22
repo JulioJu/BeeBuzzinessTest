@@ -3,7 +3,7 @@
   *         GITHUB: https://github.com/JulioJu
   *        LICENSE: MIT (https://opensource.org/licenses/MIT)
   *        CREATED: Tue 22 Oct 2019 01:10:49 PM CEST
-  *       MODIFIED: Tue 22 Oct 2019 01:28:01 PM CEST
+  *       MODIFIED: Tue 22 Oct 2019 03:23:49 PM CEST
   *
   *          USAGE:
   *
@@ -12,13 +12,19 @@
   */
 
 import { parseCommandLine } from '../src/setup-server-and-command-line-parser';
+import { Logger } from '../logger';
+
+const silentLogger = new Logger(false);
 
 describe('lcd-display tests', () => {
 
   test('Should return 2',
     () => {
       const returnCode =
-        parseCommandLine(['node', './build/src/index.js']);
+        parseCommandLine(
+          ['node', './build/src/index.js'],
+          silentLogger
+        );
       expect(returnCode)
         .toEqual(2);
     });
@@ -26,7 +32,10 @@ describe('lcd-display tests', () => {
   test('Should return 3',
     () => {
       const returnCode =
-        parseCommandLine(['node', './build/src/index.js', '0123456789', '134']);
+        parseCommandLine(
+          ['node', './build/src/index.js', '0123456789', '134'],
+          silentLogger
+        );
       expect(returnCode)
         .toEqual(3);
     });
@@ -34,7 +43,10 @@ describe('lcd-display tests', () => {
   test('Should return 4',
     () => {
       const returnCode =
-        parseCommandLine(['node', './build/src/index.js', '123a']);
+        parseCommandLine(
+          ['node', './build/src/index.js', '123a'],
+          silentLogger
+        );
       expect(returnCode)
         .toEqual(4);
     });
@@ -42,7 +54,10 @@ describe('lcd-display tests', () => {
   test('Should return 0',
     () => {
       const returnCode =
-        parseCommandLine(['node', './build/src/index.js', '0123456789']);
+        parseCommandLine(
+          ['node', './build/src/index.js', '0123456789'],
+          silentLogger
+        );
       expect(returnCode)
         .toEqual(0);
     });

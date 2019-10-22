@@ -8,7 +8,7 @@
     "start": "node ./build/src/index.js",
     "compile": "rm -Rf ./build/ && node ./node_modules/.bin/tsc",
     "lint": "node ./node_modules/tslint/bin/tslint --project ./tsconfig.json --config \"./tslint.yaml\" \"app/**/*.ts\" --format verbose",
-    "test": "export ldAppBeeBuzziness=true && jest ./build/test",
+    "test": "yarn compile && jest ./build/test",
     "watch:compile": "rm -Rf ./app/javascript && node ./node_modules/typescript/bin/tsc --watch",
     "watch:lint": "node ./node_modules/chokidar-cli/index.js 'app/**/*.ts' -c \"npm run lint\" --initial --verbose",
     "watch:test": "jest --watchAll ./build/test",
@@ -22,14 +22,17 @@
     "@types/jest": "^24.0.19",
     "@types/node": "^12.11.1",
     "@types/semver": "^6.0.2",
+    "@types/sinon": "^7.5.0",
     "chokidar-cli": "^2.0.0",
     "jest": "^24.9.0",
     "npm-run-all": "^4.1.5",
     "tslint": "^5.20.0",
+    "tslint-sonarts": "^1.9.0",
     "typescript": "^3.6.4"
   },
   "dependencies": {
     "node": "^12.12.0",
-    "semver": "^6.3.0"
+    "semver": "^6.3.0",
+    "sinon": "^7.5.0"
   }
 }

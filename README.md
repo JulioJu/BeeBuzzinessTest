@@ -108,6 +108,8 @@ https://medium.com/@nickcis/jest-passing-custom-arguments-d44ef3f2defb
     }
     ```
 
+* With mocha, we could use `assert` package
+
 # Credits
 
 * ./app/logger.ts is strongly inspired from
