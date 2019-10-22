@@ -3,7 +3,7 @@
   *         GITHUB: https://github.com/JulioJu
   *        LICENSE: MIT (https://opensource.org/licenses/MIT)
   *        CREATED: Mon 21 Oct 2019 04:34:18 PM CEST
-  *       MODIFIED: Tue 22 Oct 2019 03:17:16 PM CEST
+  *       MODIFIED: Tue 22 Oct 2019 05:03:42 PM CEST
   *
   *          USAGE:
   *
@@ -73,7 +73,7 @@ export const parseCommandLine = (args: string[], logger: Logger): number => {
       _printUsage(true, logger);
       return 4;
     }
-    numbers.push(parsed);
+    numbers[index] = parsed;
   }
   logger.displayLCD(buildStringOfLCDChars(numbers));
   return 0;
