@@ -3,7 +3,7 @@
   *         GITHUB: https://github.com/JulioJu
   *        LICENSE: MIT (https://opensource.org/licenses/MIT)
   *        CREATED: Mon 21 Oct 2019 04:34:18 PM CEST
-  *       MODIFIED: Tue 22 Oct 2019 11:46:45 AM CEST
+  *       MODIFIED: Tue 22 Oct 2019 11:50:10 AM CEST
   *
   *          USAGE:
   *
@@ -12,14 +12,14 @@
   */
 
 import * as semver from 'semver';
-import { BuildStringOfLCDChars } from './display-lcd';
+import { buildStringOfLCDChars } from './display-lcd';
 import * as Logger from '../logger';
 
 /**
  * Instantiate node.js
  *
  */
-export const SetupProcess = (): number => {
+export const setupProcess = (): number => {
 
   const nodeversion = process.versions.node;
   Logger.info(`You use version ${nodeversion} of Node.js`);
@@ -44,7 +44,7 @@ export const SetupProcess = (): number => {
  * Parse command line
  *
  */
-export const ParseCommandLine = (): number => {
+export const parseCommandLine = (): number => {
   const usage: string =
     'You must use at least one argument composed only of digits: '
     + 'e.g. `./yarn start 798778`';
@@ -72,7 +72,7 @@ export const ParseCommandLine = (): number => {
       }
 
     }
-    Logger.displayLCD(BuildStringOfLCDChars(digitArgumentsArray));
+    Logger.displayLCD(buildStringOfLCDChars(digitArgumentsArray));
   }
   return 0;
 };

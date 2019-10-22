@@ -3,7 +3,7 @@
   *         GITHUB: https://github.com/JulioJu
   *        LICENSE: MIT (https://opensource.org/licenses/MIT)
   *        CREATED: Mon 21 Oct 2019 04:39:27 PM CEST
-  *       MODIFIED: Tue 22 Oct 2019 09:42:38 AM CEST
+  *       MODIFIED: Tue 22 Oct 2019 11:49:13 AM CEST
   *
   *          USAGE:
   *
@@ -86,7 +86,7 @@ const _appendCharsToThirdLine = (oneDigit: number): string => {
   }
 };
 
-export const BuildStringOfLCDChars = (digits: number[]): string => {
+export const buildStringOfLCDChars = (digits: number[]): string => {
   let firstLineToPrint = '';
   let secondLineToPrint = '';
   let thirdLineToPrint = '';
