@@ -3,7 +3,7 @@
   *         GITHUB: https://github.com/JulioJu
   *        LICENSE: MIT (https://opensource.org/licenses/MIT)
   *        CREATED: Fri 18 Oct 2019 06:26:42 PM CEST
-  *       MODIFIED: Tue 22 Oct 2019 09:45:55 AM CEST
+  *       MODIFIED: Tue 22 Oct 2019 11:07:48 AM CEST
   *
   *          USAGE:
   *
@@ -15,19 +15,14 @@ import {
   InstantiateServer,
   ParseCommandLine
 } from './start-node-parse-command-line';
-// Can't use `import` like es6
-// tslint:disable:no-var-requires no-require-imports
-require('console-info');
-require('console-warn');
-require('console-error');
-require('../../console-debug');
+import * as Logger from '../logger';
 
 export const Main = (): boolean => {
   InstantiateServer();
   if (process.env.ldAppBeeBuzziness !== 'true') {
     ParseCommandLine();
   } else {
-    console.warn('Test environnement. No command line are passed.');
+    Logger.warn('Test environnement. No command line are passed.');
   }
   return true;
 };

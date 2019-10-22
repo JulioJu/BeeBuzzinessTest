@@ -846,21 +846,6 @@ console-control-strings@^1.0.0, console-control-strings@~1.1.0:
   resolved "https://registry.yarnpkg.com/console-control-strings/-/console-control-strings-1.1.0.tgz#3d7cf4464db6446ea644bf4b39507f9851008e8e"
   integrity sha1-PXz0Rk22RG6mRL9LOVB/mFEAjo4=
 
-console-error@^0.0.4:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/console-error/-/console-error-0.0.4.tgz#1f3857db78d4a25cccac2bc6d012f7082bd67d1c"
-  integrity sha1-HzhX23jUolzMrCvG0BL3CCvWfRw=
-
-console-info@^0.0.5:
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/console-info/-/console-info-0.0.5.tgz#539a93bed104be25dfdbc3dc5c9b2418496b2c83"
-  integrity sha1-U5qTvtEEviXf28PcXJskGElrLIM=
-
-console-warn@^0.0.4:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/console-warn/-/console-warn-0.0.4.tgz#ded2c1f16c07bbb4a7341950170dc59589304d0a"
-  integrity sha1-3tLB8WwHu7SnNBlQFw3FlYkwTQo=
-
 convert-source-map@^1.1.0, convert-source-map@^1.4.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/convert-source-map/-/convert-source-map-1.6.0.tgz#51b537a8c43e0f04dec1993bffcdd504e758ac20"

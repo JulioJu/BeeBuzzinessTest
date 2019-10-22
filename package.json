@@ -29,9 +29,6 @@
     "typescript": "^3.6.4"
   },
   "dependencies": {
-    "console-error": "^0.0.4",
-    "console-info": "^0.0.5",
-    "console-warn": "^0.0.4",
     "node": "^12.12.0",
     "semver": "^6.3.0"
   }

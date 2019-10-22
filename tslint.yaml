@@ -46,7 +46,7 @@ rules:
   comment-format: false
 
   no-console:
-    - false
+    - true
 
   # Disallows unused imports, variables, functions and private class members.
   # Similar to tsc’s –noUnusedParameters and –noUnusedLocals options.

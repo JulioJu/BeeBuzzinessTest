@@ -3,7 +3,7 @@
   *         GITHUB: https://github.com/JulioJu
   *        LICENSE: MIT (https://opensource.org/licenses/MIT)
   *        CREATED: Mon 21 Oct 2019 04:34:18 PM CEST
-  *       MODIFIED: Tue 22 Oct 2019 09:42:37 AM CEST
+  *       MODIFIED: Tue 22 Oct 2019 11:08:47 AM CEST
   *
   *          USAGE:
   *
@@ -13,12 +13,7 @@
 
 import * as semver from 'semver';
 import { BuildStringOfLCDChars } from './display-lcd';
-// Can't use `import` like es6
-// tslint:disable:no-var-requires no-require-imports
-require('console-info');
-require('console-warn');
-require('console-error');
-require('../../console-debug');
+import * as Logger from '../logger';
 
 /**
  * Instantiate node.js
@@ -26,17 +21,17 @@ require('../../console-debug');
  */
 export const InstantiateServer = (): void => {
 
-  console.debug(`This process is pid ${process.pid}`);
+  Logger.debug(`This process is pid ${process.pid}`);
 
   const nodeversion = process.versions.node;
-  console.info(`You use version ${nodeversion} of Node.js`);
+  Logger.info(`You use version ${nodeversion} of Node.js`);
 
   // https://nodejs.org/api/process.html#process_event_exit
   process.on('exit', (code: number) => {
     if (code === 0) {
-      console.info('\n\n\n\nFinishing with code 0…');
+      Logger.info('\n\n\n\nFinishing with code 0…');
     } else {
-      console.error(`\n\n\nFinishing with error code '${code}'…`);
+      Logger.error(`\n\n\nFinishing with error code '${code}'…`);
     }
   });
 
@@ -44,7 +39,7 @@ export const InstantiateServer = (): void => {
   // As in generator-jhipster
   // https://github.com/jhipster/generator-jhipster/blob/00c59eca38ca43565d80fe00e1666875976b6cf9/generators/generator-base.js#L1837
   if (semver.lte(nodeversion, '9.5.0')) {
-    console.error('Please use a node >= 9.5.0');
+    Logger.error('Please use a node >= 9.5.0');
     process.exit(20);
   }
 
@@ -60,13 +55,13 @@ export const ParseCommandLine = (): void => {
     + 'e.g. `./yarn start 798778`';
   const numberOfArgs = process.argv.length;
   if (numberOfArgs === 2) {
-    console.info(usage);
+    Logger.info(usage);
   } else if (numberOfArgs > 3) {
-    console.error(usage);
+    Logger.error(usage);
     process.exit(3);
   } else {
     const digitsArgumentString: string = process.argv[2];
-    console.info(`You have passed argument ${digitsArgumentString}.`);
+    Logger.info(`You have passed argument ${digitsArgumentString}.`);
     const digitArgumentsArray: number[] =
       new Array(digitsArgumentString.length);
     for (let index = 0 ; index < digitArgumentsArray.length ; index ++) {
@@ -74,15 +69,15 @@ export const ParseCommandLine = (): void => {
       digitArgumentsArray[index] =
         Number.parseInt(oneDigit, 10);
       if (Number.isNaN(digitArgumentsArray[index])) {
-        console.error(`At index '${index}' of the string `
+        Logger.error(`At index '${index}' of the string `
           + `'${digitsArgumentString}', the character '${oneDigit}' `
           + `is not a number (\`NaN\`)`);
-        console.error(usage);
+        Logger.error(usage);
         process.exit(4);
       }
 
     }
-    console.log(BuildStringOfLCDChars(digitArgumentsArray));
+    Logger.displayLCD(BuildStringOfLCDChars(digitArgumentsArray));
   }
 };
 

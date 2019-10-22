@@ -3,7 +3,7 @@
   *         GITHUB: https://github.com/JulioJu
   *        LICENSE: MIT (https://opensource.org/licenses/MIT)
   *        CREATED: Mon 21 Oct 2019 04:47:18 PM CEST
-  *       MODIFIED: Tue 22 Oct 2019 09:44:20 AM CEST
+  *       MODIFIED: Tue 22 Oct 2019 11:10:39 AM CEST
   *
   *          USAGE:
   *
@@ -21,10 +21,8 @@ describe('display-lcd tests', () => {
           '  _       _   _       _   _   _   _   _ \n'
         + ' | |   |  _|  _| |_| |_  |_    | |_| |_|\n'
         + ' |_|   | |_   _|   |  _| |_|   | |_|  _|';
-      console.log(expectedLCDDisplay);
       const returnValue: string =
         BuildStringOfLCDChars([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
-      console.log(returnValue);
       expect(returnValue)
         .toEqual(expectedLCDDisplay);
     });

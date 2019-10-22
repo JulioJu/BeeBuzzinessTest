@@ -92,13 +92,21 @@ Un programme en ligne de commandes permettra d’exécuter le résultat de ton t
 
 * With Mocha, the error is
     ```
-    At index '0' of the string './appJS/test', the character '.' is not a number (`NaN`)
+    At index '0' of the string './build/test', the character '.' is not a number (`NaN`)
     You must use at least one argument composed only of digits: e.g. `./yarn start 798778`
     Finishing with error code '4'…
     ```
 
 There are some solutions https://stackoverflow.com/questions/16144455/mocha-tests-with-extra-options-or-parameters/16150402
 https://medium.com/@nickcis/jest-passing-custom-arguments-d44ef3f2defb
+
+# Credits
+
+* ./app/logger.ts is strongly inspired from
+    1. https://www.npmjs.com/package/console-info
+    2. https://www.npmjs.com/package/console-warn
+    2. https://www.npmjs.com/package/console-error
+    (license MIT)
 
 <!-- vim: sw=2 ts=2 et:
 -->
